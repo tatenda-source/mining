@@ -225,7 +225,11 @@ def train(config_path: str) -> None:
         prepare_training_data,
         compute_exploration_intensity,
     )
-    from geomine.training.train import train_with_spatial_cv, compute_shap_analysis, save_model
+    from geomine.training.train import (
+        train_with_spatial_cv, compute_shap_analysis, save_model,
+        run_baselines, check_lithology_vs_prospectivity,
+    )
+    from geomine.training.spatial_cv import create_spatial_blocks, create_along_strike_blocks
 
     processed_dir = Path(config["data"]["processed_dir"])
     output_dir = Path(config["data"]["output_dir"])
@@ -274,29 +278,50 @@ def train(config_path: str) -> None:
     logger.info(f"Training data: {X.shape[0]} samples, {X.shape[1]} features, "
                 f"{y.sum()} positive, {(~y.astype(bool)).sum()} negative")
 
-    # Train with spatial CV
-    logger.info("Training model with spatial block cross-validation...")
+    # --- Run baselines FIRST (calibrate expectations) ---
+    logger.info("Running baseline models before XGBoost...")
+    coords_gdf = gpd.GeoDataFrame(
+        geometry=gpd.points_from_xy(metadata["x"], metadata["y"]),
+        crs=config["project"]["crs"],
+    )
+    block_ids = create_spatial_blocks(coords_gdf, config["training"]["spatial_cv"]["block_size_km"])
+
+    # Also create along-strike blocks for the Great Dyke (linear intrusion)
+    strike_block_ids = create_along_strike_blocks(coords_gdf, n_segments=5, strike_azimuth=15.0)
+
+    baseline_results = run_baselines(X, y, block_ids, metadata["feature_names"])
+
+    # --- Train with spatial CV ---
+    logger.info("Training XGBoost with spatial block cross-validation...")
     model, cv_results, trained_feature_names = train_with_spatial_cv(X, y, metadata, config)
 
     logger.info(f"Spatial CV results:")
-    logger.info(f"  PR-AUC:  {cv_results['mean_pr_auc']:.3f} (+/- {cv_results.get('std_pr_auc', 0):.3f})")
-    logger.info(f"  ROC-AUC: {cv_results['mean_roc_auc']:.3f} (+/- {cv_results.get('std_roc_auc', 0):.3f})")
+    mean_metrics = cv_results.get("mean", cv_results)
+    pr_auc_key = "pr_auc" if "pr_auc" in mean_metrics else "mean_pr_auc"
+    roc_auc_key = "roc_auc" if "roc_auc" in mean_metrics else "mean_roc_auc"
+    logger.info(f"  PR-AUC:  {mean_metrics.get(pr_auc_key, 0):.3f}")
+    logger.info(f"  ROC-AUC: {mean_metrics.get(roc_auc_key, 0):.3f}")
 
-    # SHAP analysis
+    # --- SHAP analysis ---
     logger.info("Computing SHAP analysis...")
-    shap_results = compute_shap_analysis(model, X, trained_feature_names, str(output_dir))
+    shap_values, shap_importance = compute_shap_analysis(model, X, trained_feature_names, str(output_dir))
 
-    # Save model
+    # --- Lithology vs prospectivity check ---
+    diagnosis = check_lithology_vs_prospectivity(shap_importance, trained_feature_names)
+
+    # --- Save model ---
     model_path = str(output_dir / "model_xgboost.joblib")
     save_model(model, {
         "features": trained_feature_names,
         "cv_results": cv_results,
+        "baseline_results": baseline_results,
+        "lithology_diagnosis": diagnosis,
         "config_path": config_path,
     }, model_path)
     logger.info(f"Model saved to {model_path}")
 
-    # Gate check
-    pr_auc = cv_results["mean_pr_auc"]
+    # --- Gate check ---
+    pr_auc = mean_metrics.get(pr_auc_key, 0)
     if pr_auc < 0.45:
         logger.warning("=" * 60)
         logger.warning(f"GATE FAILURE: PR-AUC = {pr_auc:.3f} < 0.45")

@@ -17,6 +17,8 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import average_precision_score, roc_auc_score
 from xgboost import XGBClassifier
 
 from geomine.training.spatial_cv import (
@@ -218,6 +220,144 @@ def train_with_spatial_cv(
         final_model = train_random_forest(X, y, config)
 
     return final_model, cv_results, feature_names
+
+
+# ---------------------------------------------------------------------------
+# Baseline models (run BEFORE XGBoost to calibrate expectations)
+# ---------------------------------------------------------------------------
+
+def run_baselines(
+    X: pd.DataFrame | np.ndarray,
+    y: np.ndarray,
+    block_ids: np.ndarray,
+    feature_names: list[str],
+    n_folds: int = 5,
+) -> dict[str, Any]:
+    """Run simple baseline models to calibrate XGBoost expectations.
+
+    Three baselines:
+    1. Single-feature threshold on each feature (best univariate predictor)
+    2. Logistic regression on all features
+    3. Random baseline (shuffled labels)
+
+    If logistic regression already achieves PR-AUC ~0.55, XGBoost may only
+    add marginal lift -- useful knowledge for interpreting results.
+
+    Returns a dict with baseline results and the best single-feature name.
+    """
+    X_arr = np.asarray(X)
+    results: dict[str, Any] = {}
+
+    # --- Baseline 1: Best single-feature threshold ---
+    best_feat_prauc = 0.0
+    best_feat_name = ""
+    for i, name in enumerate(feature_names):
+        feat = X_arr[:, i]
+        valid = np.isfinite(feat)
+        if valid.sum() < 10:
+            continue
+        try:
+            prauc = average_precision_score(y[valid], feat[valid])
+            # Also try inverse (lower = more prospective)
+            prauc_inv = average_precision_score(y[valid], -feat[valid])
+            if prauc_inv > prauc:
+                prauc = prauc_inv
+                direction = "inverse"
+            else:
+                direction = "direct"
+            if prauc > best_feat_prauc:
+                best_feat_prauc = prauc
+                best_feat_name = f"{name} ({direction})"
+        except Exception:
+            continue
+
+    results["best_single_feature"] = best_feat_name
+    results["best_single_feature_prauc"] = best_feat_prauc
+    logger.info(
+        "Baseline 1 -- Best single feature: %s (PR-AUC=%.3f)",
+        best_feat_name, best_feat_prauc,
+    )
+
+    # --- Baseline 2: Logistic regression with spatial CV ---
+    from geomine.training.spatial_cv import evaluate_spatial_cv
+    lr = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
+    lr_results = evaluate_spatial_cv(lr, X, y, block_ids, n_folds)
+    results["logistic_regression"] = lr_results.get("mean", {})
+    lr_prauc = lr_results.get("mean", {}).get("pr_auc", float("nan"))
+    logger.info("Baseline 2 -- Logistic Regression: PR-AUC=%.3f", lr_prauc)
+
+    # --- Baseline 3: Random (shuffled labels) ---
+    rng = np.random.RandomState(42)
+    y_shuffled = rng.permutation(y)
+    random_prauc = average_precision_score(y, y_shuffled.astype(float))
+    results["random_prauc"] = random_prauc
+    results["class_prior"] = float(y.mean())
+    logger.info(
+        "Baseline 3 -- Random: PR-AUC=%.3f (class prior=%.3f)",
+        random_prauc, y.mean(),
+    )
+
+    logger.info("=" * 50)
+    logger.info("BASELINE SUMMARY:")
+    logger.info("  Random:            PR-AUC=%.3f", random_prauc)
+    logger.info("  Best single feat:  PR-AUC=%.3f (%s)", best_feat_prauc, best_feat_name)
+    logger.info("  Logistic Regr:     PR-AUC=%.3f", lr_prauc)
+    logger.info("  XGBoost target:    PR-AUC>0.60")
+    logger.info("=" * 50)
+
+    return results
+
+
+def check_lithology_vs_prospectivity(
+    shap_importance: list[tuple[str, float]],
+    feature_names: list[str],
+) -> str:
+    """Check if the model is doing prospectivity mapping or lithology mapping.
+
+    If spectral features that simply identify ultramafic rock dominate
+    (ferrous_iron, clay_ratio, ndvi), the model may be mapping lithology
+    rather than discriminating deposit-bearing horizons within the intrusion.
+
+    Returns a diagnostic string: 'prospectivity', 'lithology', or 'ambiguous'.
+    """
+    # Features that primarily identify ultramafic lithology
+    lithology_markers = {"ferrous_iron", "spectral_ferrous_iron", "clay_ratio",
+                         "spectral_clay_ratio", "ndvi", "spectral_ndvi"}
+    # Features that discriminate within ultramafics (structural controls, specific alteration)
+    prospectivity_markers = {"lineament_density", "distance_to_lineaments",
+                             "fault_intersection_density", "slope", "aspect",
+                             "iron_oxide", "spectral_iron_oxide", "ferric_iron",
+                             "spectral_ferric_iron", "clay_swir", "spectral_clay_swir",
+                             "plan_curvature", "profile_curvature", "drainage_density"}
+
+    top_5 = [name for name, _ in shap_importance[:5]]
+    lith_count = sum(1 for f in top_5 if any(m in f for m in lithology_markers))
+    prosp_count = sum(1 for f in top_5 if any(m in f for m in prospectivity_markers))
+
+    if lith_count >= 4:
+        logger.warning(
+            "LITHOLOGY WARNING: Top SHAP features (%s) are primarily lithology "
+            "discriminators. The model may be mapping ultramafic rock rather than "
+            "predicting deposit-bearing horizons within the intrusion. Consider:\n"
+            "  1. Restrict training to WITHIN the ultramafic unit only\n"
+            "  2. Add structural features (lineaments, fault intersections)\n"
+            "  3. Add proximity-to-contact features",
+            top_5,
+        )
+        return "lithology"
+    elif prosp_count >= 3:
+        logger.info(
+            "PROSPECTIVITY CONFIRMED: Top features (%s) include structural "
+            "and specific alteration indicators, not just bulk lithology.",
+            top_5,
+        )
+        return "prospectivity"
+    else:
+        logger.info(
+            "AMBIGUOUS: Top features (%s) mix lithology and prospectivity "
+            "indicators. Review SHAP plots manually.", top_5,
+        )
+        return "ambiguous"
 
 
 # ---------------------------------------------------------------------------

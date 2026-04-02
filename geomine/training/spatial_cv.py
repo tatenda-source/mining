@@ -72,6 +72,57 @@ def create_spatial_blocks(
     return block_ids.astype(int)
 
 
+def create_along_strike_blocks(
+    points_gdf: gpd.GeoDataFrame,
+    n_segments: int = 5,
+    strike_azimuth: float = 15.0,
+) -> np.ndarray:
+    """Assign points to blocks along a linear geological feature's strike direction.
+
+    For linear intrusions like the Great Dyke, standard square grid blocking
+    can place geologically similar adjacent segments into train and test sets.
+    This function projects points onto the strike direction and divides them
+    into segments along that axis.
+
+    Parameters
+    ----------
+    points_gdf : GeoDataFrame
+        Sample points in a projected CRS (units = metres).
+    n_segments : int
+        Number of along-strike segments (= number of CV folds).
+    strike_azimuth : float
+        Strike direction in degrees clockwise from north.
+        Great Dyke is roughly NNE-SSW (~15 degrees).
+
+    Returns
+    -------
+    ndarray of int
+        Segment ID for every point.
+    """
+    xs = points_gdf.geometry.x.values
+    ys = points_gdf.geometry.y.values
+
+    # Rotate coordinates so strike direction aligns with Y axis
+    angle_rad = np.radians(strike_azimuth)
+    cos_a, sin_a = np.cos(angle_rad), np.sin(angle_rad)
+
+    # Project onto strike direction
+    strike_proj = xs * sin_a + ys * cos_a
+
+    # Divide into equal-count segments along strike
+    percentiles = np.linspace(0, 100, n_segments + 1)
+    boundaries = np.percentile(strike_proj, percentiles)
+    segment_ids = np.digitize(strike_proj, boundaries[1:-1])
+
+    n_actual = len(np.unique(segment_ids))
+    logger.info(
+        "Created %d along-strike segments (azimuth=%.0f°) for %d points",
+        n_actual, strike_azimuth, len(points_gdf),
+    )
+
+    return segment_ids.astype(int)
+
+
 # ---------------------------------------------------------------------------
 # CV splitter
 # ---------------------------------------------------------------------------
