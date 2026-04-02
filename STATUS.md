@@ -119,6 +119,38 @@ These are real geological signals, not noise. The ferrous_iron and clay_ratio va
 
 ---
 
+## Scientific Claim (What Phase 1 Does and Doesn't Prove)
+
+**What Phase 1 can claim (if gate passes):**
+> "Sentinel-2 spectral and terrain features can discriminate known Cr/PGM deposit locations from barren ground within the Great Dyke layered intrusion, as measured by spatial block cross-validation."
+
+**What Phase 1 cannot claim:**
+- That this architecture generalizes to other geological terranes (Zambian Copperbelt, Limpopo Belt)
+- That it finds *unknown* deposits (it only correlates with *known* ones)
+- That it works in covered terranes (thick regolith, dense vegetation)
+- That it works with different satellite conditions (different season, different cloud cover)
+- That it maps mineral prospectivity rather than ultramafic lithology
+
+### The Lithology vs Prospectivity Question
+
+The Great Dyke is ultramafic along its entire 550km strike. The spectral indices (ferrous_iron, clay_ratio) will light up serpentinized ultramafics. But deposits occur at **specific horizons within the ultramafic sequence** -- not everywhere the rock is ultramafic.
+
+A model that learns "ultramafic = deposit" is doing lithology mapping, not prospectivity mapping. That's not wrong, but it's a different and weaker claim.
+
+**Guards built into the pipeline:**
+1. `check_lithology_vs_prospectivity()` -- automatically flags if SHAP top features are all lithology discriminators
+2. `run_baselines()` -- runs logistic regression + single-feature threshold before XGBoost to calibrate expectations. If ferrous_iron alone gives PR-AUC 0.55, XGBoost needs to meaningfully exceed that.
+3. `create_along_strike_blocks()` -- CV blocking along the Great Dyke's strike direction (NNE, ~15 degrees) to prevent geologically similar adjacent segments leaking between train/test
+
+### Known Limitations of Current Data
+
+1. **Single scene (2023-07-30):** We are modeling the Great Dyke on one dry-season day, not its persistent geology. Laterite reflectance varies seasonally, NDVI changes with rainfall, SWIR shifts with soil moisture.
+2. **20m to 10m upsampling:** B8A, B11, B12 (SWIR bands) are natively 20m, bilinearly upsampled to 10m. This fabricates spatial detail. If SWIR-derived features dominate SHAP, check for interpolation artifacts.
+3. **17 training deposits:** With spatial CV (25km blocks or 5 along-strike segments), each fold gets ~12 train / 5 test positives. This produces high-variance estimates. PR-AUC 0.65 could collapse with 30 more labels.
+4. **MRDS is down:** Training labels are from published literature, not the USGS database. Some coordinates may be approximate (km-scale error on older records).
+
+---
+
 ## Git History
 
 ```
