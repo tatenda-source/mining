@@ -1,0 +1,135 @@
+# GeoMine AI -- Great Dyke, Zimbabwe Configuration
+# Phase 1: Prove Signal for Cr/PGM deposits
+
+project:
+  name: "great_dyke_cr_pgm"
+  description: "Phase 1 PoC -- Chromite and PGM prospectivity on the Great Dyke"
+  target_minerals: ["chromite", "pgm"]
+  crs: "EPSG:32736"  # UTM Zone 36S (covers Great Dyke)
+
+aoi:
+  geojson: "configs/great_dyke_aoi.geojson"
+  # Bounding box (WGS84) for API queries
+  bbox: [29.2, -21.2, 30.8, -19.0]
+
+data:
+  # Directories
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  training_dir: "data/training"
+  output_dir: "data/outputs"
+
+  sentinel2:
+    collection: "sentinel-2-l2a"
+    date_range: ["2023-01-01", "2023-12-31"]
+    max_cloud_cover: 20
+    bands: ["B02", "B03", "B04", "B08", "B8A", "B11", "B12"]
+
+  aster:
+    # Download from NASA EarthData
+    product: "AST_L1T"
+    bands_vnir: ["B01", "B02", "B3N"]
+    bands_swir: ["B04", "B05", "B06", "B07", "B08", "B09"]
+    bands_tir: ["B10", "B11", "B12", "B13", "B14"]
+
+  srtm:
+    product: "SRTMGL1"
+    resolution: 30  # meters
+
+  mrds:
+    # USGS Mineral Resources Data System
+    bbox: [29.0, -21.5, 31.0, -19.0]
+    commodities: ["Chromium", "Platinum", "Palladium", "Nickel"]
+
+spectral_indices:
+  # Sentinel-2 based indices
+  clay_ratio:
+    formula: "B11 / B12"
+    description: "Clay mineral indicator (kaolinite, illite, smectite)"
+  iron_oxide:
+    formula: "B04 / B02"
+    description: "Iron oxide indicator (hematite, goethite)"
+  ferric_iron:
+    formula: "(B8A - B04) / (B8A + B04)"
+    description: "Ferric iron (Fe3+) anomalies"
+  ndvi:
+    formula: "(B08 - B04) / (B08 + B04)"
+    description: "Vegetation cover -- geobotany anomalies"
+  ferrous_iron:
+    formula: "B11 / B8A"
+    description: "Ferrous silicates indicator"
+  laterite:
+    formula: "B11 / B12"
+    description: "Laterite / weathering indicator"
+
+  # ASTER based indices (if ASTER data available)
+  aloh:
+    formula: "B05 / B07"
+    description: "Al-OH minerals -- kaolinite, alunite (Au pathfinder)"
+    sensor: "aster"
+  mgoh:
+    formula: "B07 / B08"
+    description: "Mg-OH minerals -- chlorite, serpentine (Ni, Cr pathfinder)"
+    sensor: "aster"
+  silica:
+    formula: "B13 / B10"
+    description: "Silica index -- quartz-rich zones"
+    sensor: "aster"
+
+structural:
+  dem_source: "srtm"
+  hillshade_azimuths: [0, 45, 90, 135, 180, 225, 270, 315]
+  lineament:
+    canny_sigma: 2.0
+    canny_low_threshold: 0.05
+    canny_high_threshold: 0.15
+    hough_threshold: 50
+    hough_min_line_length: 500  # meters
+    hough_max_line_gap: 100     # meters
+  buffer_distances_km: [1, 5, 10]
+
+training:
+  negative_sampling:
+    method: "stratified_exploration_aware"
+    deposit_buffer_km: 3.0
+    exploration_radius_km: 10.0  # only sample negatives within this distance of roads/surveys
+    neg_to_pos_ratio: 5
+
+  spatial_cv:
+    n_folds: 5
+    block_size_km: 25  # spatial block size for cross-validation
+
+  class_balance:
+    method: "smote"  # or "adasyn" or "weighted"
+
+  test_size: 0.15
+  val_size: 0.15
+
+model:
+  primary: "xgboost"
+  xgboost:
+    n_estimators: 500
+    max_depth: 8
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    eval_metric: "aucpr"
+    early_stopping_rounds: 50
+
+  random_forest:
+    n_estimators: 500
+    max_depth: 20
+    min_samples_leaf: 5
+
+  uncertainty:
+    method: "bootstrap"  # bootstrap ensemble for uncertainty
+    n_estimators: 20
+
+output:
+  probability_raster: "data/outputs/probability_cr_pgm.tif"
+  uncertainty_raster: "data/outputs/uncertainty_cr_pgm.tif"
+  shap_summary: "data/outputs/shap_summary.png"
+  targets_geojson: "data/outputs/targets.geojson"
+  report: "data/outputs/phase1_report.html"
+  threshold: 0.7  # minimum probability to flag as target
+  min_cluster_area_km2: 0.5

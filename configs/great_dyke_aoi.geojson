@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "name": "great_dyke_aoi",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Great Dyke Study Area",
+        "description": "Covers the main Great Dyke layered intrusion from Mvurwi in the north to Wedza in the south, Zimbabwe. Includes the main chromite and PGM bearing ultramafic layers.",
+        "target_minerals": ["chromite", "pgm", "nickel"],
+        "geological_context": "2.58 Ga layered mafic-ultramafic intrusion, 550km long, 4-12km wide. Major chromitite seams in the ultramafic sequence. PGM-bearing Main Sulphide Zone near the top of the ultramafic sequence."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [29.85, -18.85],
+            [30.95, -18.85],
+            [30.95, -19.55],
+            [30.60, -19.55],
+            [30.45, -20.00],
+            [30.35, -20.35],
+            [30.20, -20.60],
+            [30.05, -20.85],
+            [29.90, -21.10],
+            [29.75, -21.10],
+            [29.75, -20.85],
+            [29.90, -20.60],
+            [30.05, -20.35],
+            [30.20, -20.00],
+            [30.35, -19.55],
+            [30.50, -19.55],
+            [29.85, -18.85]
+          ]
+        ]
+      }
+    }
+  ]
+}
