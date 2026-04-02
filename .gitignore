@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Data (large satellite files -- never commit)
+data/raw/*
+data/processed/*
+data/training/*.tif
+data/outputs/*.tif
+
+# Keep directory structure
+!data/**/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+.env
+*.token
+credentials.json
+
+# Models (too large for git)
+*.joblib
+*.pkl
+*.h5
+*.pt
