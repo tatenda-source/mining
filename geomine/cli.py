@@ -386,6 +386,69 @@ def predict(config_path: str, model_path: str | None) -> None:
 
 @main.command()
 @click.argument("config_path", type=click.Path(exists=True))
+@click.option("--preset", default=None, help="Preset name (e.g. geology_12_8_2, swir, iron_detection)")
+@click.option("--all-presets", is_flag=True, help="Render all geological presets")
+@click.option("--bands", default=None, help="Custom band indices as R,G,B (e.g. 7,4,1)")
+@click.option("--gamma", default=1.2, help="Gamma correction (default 1.2)")
+def layers(config_path: str, preset: str | None, all_presets: bool, bands: str | None, gamma: float) -> None:
+    """Render RGB band composite layers for geological interpretation."""
+    config = load_config(config_path)
+
+    from geomine.spectral.visualize import render_composite, render_all_presets, LAYER_PRESETS
+
+    processed_dir = Path(config["data"]["processed_dir"])
+    output_dir = Path(config["data"]["output_dir"]) / "layers"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Find stacked raster
+    sentinel_dir = processed_dir / "sentinel2"
+    stacked = list(sentinel_dir.glob("*_stacked.tif"))
+    if not stacked:
+        logger.error("No stacked Sentinel-2 raster found. Run 'download' first.")
+        return
+    raster_path = str(stacked[0])
+
+    if all_presets:
+        results = render_all_presets(raster_path, str(output_dir), gamma=gamma)
+        logger.info(f"Rendered {len(results)} layer presets to {output_dir}")
+        for name, path in results.items():
+            info = LAYER_PRESETS[name]
+            logger.info(f"  {info['name']:30s} -> {path}")
+        return
+
+    if bands:
+        custom = tuple(int(b.strip()) for b in bands.split(","))
+        if len(custom) != 3:
+            logger.error("--bands must be 3 comma-separated indices (e.g. 7,4,1)")
+            return
+        out = output_dir / f"custom_{'_'.join(str(b) for b in custom)}.png"
+        render_composite(raster_path, preset=custom, output_png=str(out), gamma=gamma)
+        logger.info(f"Custom composite saved: {out}")
+        return
+
+    if preset:
+        if preset not in LAYER_PRESETS:
+            logger.error(f"Unknown preset '{preset}'. Available: {', '.join(LAYER_PRESETS.keys())}")
+            return
+        out = output_dir / f"{preset}.png"
+        render_composite(raster_path, preset=preset, output_png=str(out), gamma=gamma)
+        logger.info(f"Layer saved: {out}")
+        return
+
+    # No args: list available presets
+    logger.info("Available layer presets:")
+    logger.info("")
+    for name, info in LAYER_PRESETS.items():
+        logger.info(f"  {name:25s}  {info['name']}")
+        logger.info(f"  {'':25s}  Bands: {info['bands']}  |  {info['use']}")
+        logger.info("")
+    logger.info("Usage: geomine layers CONFIG --preset geology_12_8_2")
+    logger.info("       geomine layers CONFIG --all-presets")
+    logger.info("       geomine layers CONFIG --bands 7,4,1")
+
+
+@main.command()
+@click.argument("config_path", type=click.Path(exists=True))
 def run_all(config_path: str) -> None:
     """Run the full Phase 1 pipeline: download -> features -> train -> predict."""
     ctx = click.get_current_context()
