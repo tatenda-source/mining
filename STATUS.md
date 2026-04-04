@@ -1,185 +1,131 @@
 # GeoMine AI -- Project Status
 
-**Last updated:** 2 April 2026
-**Phase:** 1 -- Prove Signal
+**Last updated:** 4 April 2026
+**Phase:** 1 COMPLETE -- transitioning to Phase 2
 **Study area:** Great Dyke, Zimbabwe (Cr/PGM)
-**Team:** 2 humans + AI agents
 
 ---
 
-## What We've Built
+## Phase 1 Final Verdict
 
-### Codebase (~6,000 lines across 24 Python modules)
+### The Numbers
+
+| Test | PR-AUC | What It Means |
+|---|---|---|
+| Random CV | 0.841 | Inflated by spatial leakage |
+| **Leave-one-tile-out CV** | **0.228** | **Signal does not generalize across tiles** |
+| Along-strike CV | 0.599 | Mixed (0.11 to 0.95 per segment) |
+| Random baseline | 0.226 | Class prior |
+| Bootstrap coef CI | [0.29, 1.68] | Direction stable, magnitude uncertain |
+
+### What We Proved
+
+1. **Ferric iron (Fe3+) correlates with Cr/PGM deposits within T35KRU.** The signal is real within its geographic anchor.
+2. **The coefficient direction is stable** (bootstrap CI does not cross zero). Higher Fe3+ = more prospective is robust.
+3. **The pipeline works end-to-end.** Download -> process -> compute indices -> train -> predict -> validate.
+4. **Spatial leakage is the primary failure mode.** 10 of 12 deposits cluster in one tile. The model cannot predict deposits it hasn't geographically "seen."
+
+### What We Did NOT Prove
+
+- That ferric_iron generalizes across tiles (it doesn't -- LOTO PR-AUC = 0.228)
+- That this is a commercially deployable prediction engine
+- That the signal captures geological structure rather than local spectral conditions
+
+### Epistemic Status
+
+**"Preliminary local signal detected. Not yet generalizable."**
+
+This is a valuable negative result. The failure mode (domain shift across tiles) is the moat -- whoever solves cross-tile invariance owns the first-mover advantage in satellite mineral exploration.
+
+---
+
+## What Was Built
+
+### Codebase (~6,500 lines)
 
 ```
 geomine/
-  cli.py                    CLI: download, compute-features, train, predict, layers, run-all
-  ingest/
-    sentinel2.py            Copernicus STAC search + OData download + stack preprocessing
-    srtm.py                 Copernicus DEM 30m tile download + mosaic
-    mrds.py                 USGS mineral deposit labels + MINDAT stub
-  spectral/
-    indices.py              10 spectral indices (6 Sentinel-2, 4 ASTER)
-    compute.py              Compute all indices, stack into multi-band feature raster
-    visualize.py            7 geological band composite presets + QGIS .qml styles
-  structural/
-    terrain.py              Slope, aspect, curvature, multi-azimuth hillshade
-    lineaments.py           Canny + Hough lineament extraction, density, intersections
-    proximity.py            Distance-to-features, buffered density, drainage density
-  training/
-    sampling.py             Exploration-bias-aware negative sampling
-    spatial_cv.py           Spatial block CV + along-strike CV for linear intrusions
-    train.py                XGBoost/RF + baselines + SHAP + lithology-vs-prospectivity guard
-  predict/
-    inference.py            Chunked raster prediction, bootstrap uncertainty, target clustering
-  utils/
-    config.py               YAML config loader + AOI geometry
-    raster.py               Reproject, clip, resample, stack, read utilities
+  cli.py              CLI: download, compute-features, train, predict, layers
+  ingest/             Sentinel-2 (Copernicus), DEM (AWS), MRDS labels
+  spectral/           10 spectral indices, 7 band composite presets
+  structural/         Slope, aspect, curvature, lineaments, proximity, drainage
+  training/           Spatial CV, along-strike CV, baselines, SHAP, lithology guard
+  predict/            Raster prediction, uncertainty, target clustering
+  utils/              Config, raster operations
 ```
 
-### Key Design Decisions (from reviewer feedback)
+### Data Processed
 
-| Concern | Guard |
-|---|---|
-| Model maps lithology instead of prospectivity | `check_lithology_vs_prospectivity()` -- warns if SHAP top features are bulk lithology discriminators |
-| XGBoost overfits with only 17 deposits | `run_baselines()` -- logistic regression + single-feature threshold runs first to calibrate expectations |
-| Linear intrusion leaks between CV folds | `create_along_strike_blocks()` -- blocks along Great Dyke's NNE strike (15 degrees) |
-| Exploration bias in training labels | Exploration intensity proxy + SHAP audit for distance-to-road features |
-
----
-
-## Data on Disk
-
-### Raw Downloads
-
-| Dataset | Size | Source | Coverage |
-|---|---|---|---|
-| Sentinel-2 L2A scene (2023-07-30, 0% cloud) | 1.1 GB | Copernicus Data Space | Tile T36KTD |
-| Copernicus DEM 30m (9 tiles) | ~330 MB | AWS Open Data | Full Great Dyke |
-| Training labels (17 deposits) | < 1 KB | Published geological literature | Cr, PGM, Ni, Au |
-
-### Processed Data
-
-| Output | Size | Description |
+| Data | Size | Tiles |
 |---|---|---|
-| Stacked Sentinel-2 (7 bands, 10m) | 3.4 GB | B02, B03, B04, B08, B8A, B11, B12 -- 10980x10980 px |
-| DEM mosaic (EPSG:32736) | 348 MB | Copernicus DEM reprojected to UTM Zone 36S |
-| 6 spectral index rasters | ~2 GB total | clay_ratio, iron_oxide, ferric_iron, ndvi, ferrous_iron, clay_swir |
+| Sentinel-2 L2A (4 tiles, dry season 2023) | 4.5 GB raw, 13.5 GB stacked | T35KRU, T36KTC, T36KTD, T36KTE |
+| Copernicus DEM 30m (9 tiles) | 330 MB | Full Great Dyke coverage |
+| Spectral indices (6 per tile) | ~8 GB | ferric_iron, ferrous_iron, clay_ratio, iron_oxide, ndvi, clay_swir |
+| Terrain features | 5.5 GB | slope, aspect, curvature, hillshade x8, lineaments, drainage |
+| Training labels | 17 deposits | Cr (6), PGM (5), Ni (3), Au (3) |
 
-### Spectral Index Statistics
+### Model Outputs
 
-| Index | Median | 5th %ile | 95th %ile | Geological Meaning |
-|---|---|---|---|---|
-| ferrous_iron | 1.36 | 1.19 | 1.50 | Serpentinite/ultramafic indicator (hosts chromitite) |
-| clay_ratio | 1.30 | 1.15 | 1.38 | Weathered alteration of mafic rocks |
-| iron_oxide | 1.27 | 1.13 | 1.43 | Laterite caps, gossans, ferricrete |
-| ndvi | 0.15 | 0.11 | 0.22 | Sparse vegetation = good spectral visibility |
-| ferric_iron | 0.18 | 0.12 | 0.25 | Fe3+ enrichment (weathering indicator) |
-| clay_swir | 0.13 | 0.07 | 0.16 | SWIR clay absorption feature |
-
----
-
-## Signal Check Results (2 April 2026)
-
-**Coverage:** Only 4 of 17 deposits fall within the downloaded Sentinel-2 tile (T36KTD). The remaining 13 are on adjacent tiles not yet downloaded. This is a subset test.
-
-**Deposits in tile:** Selous PGM, Darwendale Chrome, Mutorashanga Chrome, Trojan Nickel
-
-| Index | Deposit Mean | Background Mean | Z-score | Percentile | Signal |
-|---|---|---|---|---|---|
-| ferrous_iron | 1.193 | 1.354 | -1.45 | 6th | **MODERATE** (deposits *lower* than background) |
-| ferric_iron | 0.233 | 0.181 | +1.15 | 88th | **MODERATE** (deposits higher than 88% of scene) |
-| iron_oxide | 1.230 | 1.270 | -0.44 | 32nd | WEAK |
-| ndvi | 0.176 | 0.156 | +0.48 | 75th | WEAK |
-| clay_ratio | 1.300 | 1.291 | +0.12 | 47th | NONE |
-| clay_swir | 0.130 | 0.126 | +0.16 | 46th | NONE |
-
-### Interpretation
-
-**Two signals detected with n=4 deposits:**
-
-1. **ferric_iron (Z=+1.15):** Deposits sit at the 88th percentile -- elevated Fe3+ consistent with weathered chromitite and sulphide-bearing horizons. This is a geologically plausible pathfinder.
-
-2. **ferrous_iron (Z=-1.45):** Deposits are *lower* than background. This is counterintuitive -- ultramafic-hosted deposits should have high ferrous silicates. But it may indicate that the deposit horizons (chromitite seams, MSZ) are less serpentinized than the surrounding dunite/harzburgite. Chromitite is chromite + intercumulus silicate, not pure serpentinite. This could actually be a real discriminator *within* the ultramafic sequence.
-
-3. **clay_ratio and clay_swir show no signal** -- clay weathering is uniform across the Dyke, doesn't discriminate deposit vs barren ultramafic. This confirms the reviewer's concern: these indices map lithology, not prospectivity.
-
-### Verdict: MODERATE -- Proceed with Caution
-
-Signal exists in ferric_iron and (inverted) ferrous_iron. But n=4 is dangerously small. Need to download adjacent tiles to get the remaining 13 deposits into the analysis before training.
-
-### What this tells us about the lithology question
-
-The reviewer was right to worry. Clay and iron oxide indices don't discriminate. The discriminating features are **ferric_iron** (oxidation state) and **inverted ferrous_iron** (chromitite/MSZ has different spectral character than surrounding serpentinite). This is a subtle within-ultramafic signal, not a simple lithology boundary.
-
----
-
-## Environment
-
-- **Python:** 3.11 (conda `geomine` environment)
-- **Key packages:** GDAL, rasterio, geopandas, scikit-learn, xgboost, shap, pystac-client
-- **JP2 support:** libgdal-jp2openjpeg for Sentinel-2 band reading
-- **CLI:** `geomine` command via `pip install -e .`
-- **API accounts:** NASA EarthData (active, expires 2026-05-29), Copernicus Data Space (active)
-
----
-
-## Scientific Claim Scope
-
-**What Phase 1 can claim (if gate passes):**
-> "Sentinel-2 spectral and terrain features can discriminate known Cr/PGM deposit locations from barren ground within the Great Dyke layered intrusion, as measured by spatial block cross-validation."
-
-**What Phase 1 cannot claim:**
-- Generalization to other geological terranes
-- Discovery of unknown deposits (only correlates with known ones)
-- Performance in covered terranes (thick regolith, dense vegetation)
-- Temporal robustness (single dry-season scene)
-- Prospectivity vs lithology mapping (must be verified by SHAP audit)
-
-### The Lithology vs Prospectivity Question
-
-The Great Dyke is ultramafic along its entire 550km strike. A model that learns "ultramafic = deposit" is doing lithology mapping, not prospectivity mapping. Deposits occur at specific horizons within the ultramafic sequence -- not everywhere.
-
-The pipeline guards against this with:
-1. Automated SHAP feature audit for lithology vs structural/alteration features
-2. Baseline comparison (if ferrous_iron alone gives PR-AUC 0.55, XGBoost must exceed meaningfully)
-3. Along-strike CV blocking to prevent adjacent similar segments leaking
-
-### Known Limitations
-
-1. **Single scene** -- models one dry-season day, not persistent geology
-2. **20m upsampling** -- SWIR bands fabricate spatial detail at 10m
-3. **17 deposits** -- high-variance CV estimates (~12 train / 5 test per fold)
-4. **Approximate coordinates** -- some older deposit locations may have km-scale error
-
----
-
-## What's Next
-
-### Immediate
-1. Signal check -- extract spectral values at deposit locations vs random background
-2. Terrain features -- slope, aspect, curvature, lineaments from DEM
-3. Visual overlay in QGIS -- do anomalies coincide with known deposits?
-
-### Week 2-3
-4. Feature stack assembly
-5. Training with baselines + XGBoost + spatial block CV
-6. SHAP audit + lithology-vs-prospectivity check
-7. Probability + uncertainty maps
-
-### Phase 1 Gate
-
-| Outcome | Criteria |
+| Output | Description |
 |---|---|
-| **Pass** | PR-AUC > 0.60, spatial AUC-ROC > 0.70, SHAP features geologically plausible |
-| **Marginal** | PR-AUC 0.45-0.60, model shows signal but needs refinement |
-| **Fail** | PR-AUC < 0.45, stop and diagnose before building further |
+| probability_*.tif (4 tiles) | LR(ferric_iron) probability maps |
+| uncertainty_*.tif (4 tiles) | Fold variance uncertainty maps |
+| top5_targets.tif | Top 5% target mask (603 km2) |
+| shap_summary.png | Feature importance |
+| calibration.png | Model calibration curve |
+| spatial_stress_test.json | LOTO + strike CV + bootstrap results |
 
 ---
 
-## Git History (15 commits)
+## Phase 2 Plan: Bridge from 0.228 to 0.55+
+
+### Thread A: Scene Normalization + Physics-Informed Features
+
+The core problem: ferric_iron values are not comparable across tiles from different dates, atmospheric conditions, and sun angles. A deposit in T35KRU has a different raw spectral value than the same mineral in T36KTE.
+
+**Approach:**
+1. **Z-score normalization per tile** -- subtract tile mean, divide by tile std. Makes features comparable across scenes.
+2. **First-derivative spectral ratios** -- use band ratios and normalized differences rather than raw reflectance. More invariant to illumination.
+3. **Pseudo-invariant feature calibration** -- identify stable targets (deep water, bare rock) present in multiple tiles and use them as cross-calibration anchors.
+4. **Continuum removal** -- normalize spectral curves by their hull, isolating absorption features from background reflectance.
+
+**Validation:** Re-run LOTO CV after normalization. Target: PR-AUC >= 0.45.
+
+### Thread B: Label Expansion (parallel)
+
+12 deposits across 4 tiles is not enough. Need 40-50 spread geographically.
+
+**Sources:**
+- Zimbabwe Geological Survey records
+- Published academic literature on Great Dyke chromitite seams
+- Mining company annual reports (Zimplats, Unki, Mimosa publish deposit locations)
+- MINDAT API (when access granted)
+- Manual digitization from geological maps
+
+**Target:** At least 10 deposits per tile, 40+ total.
+
+### Thread C: ASTER SWIR Integration
+
+Sentinel-2 has 2 SWIR bands. ASTER has 6 SWIR bands (1.6-2.43 um) with far better mineral discrimination. Phase 2 adds ASTER for Al-OH, Mg-OH, and carbonate indices that can distinguish specific alteration assemblages.
+
+### Success Criteria for Phase 2
+
+| Metric | Target | What It Proves |
+|---|---|---|
+| LOTO CV PR-AUC | >= 0.55 | Signal generalizes across tiles |
+| Along-strike CV PR-AUC | >= 0.65 | Signal generalizes along the Dyke |
+| Number of deposits | >= 40 | Statistically meaningful |
+| SHAP top feature | ferric_iron or derivative | Geologically interpretable |
+
+---
+
+## Git History (18 commits)
 
 ```
+dad7fc2  data: spatial stress test -- tile CV collapses to 0.228
+b66d897  feat: Phase 1 complete -- LR(ferric_iron) model, probability maps
+a6d88d7  feat: add multi-tile processing and full signal check script
+4e594dc  data: add signal check results -- ferric_iron and inverted ferrous_iron
 f0247de  docs: add scientific claim scope, lithology guard, and data limitations
 f76da76  feat: add baseline models, lithology-vs-prospectivity guard, along-strike CV
 28a0833  docs: add project status report
@@ -199,20 +145,24 @@ d3e3bbe  feat: add spectral index computation module
 
 ---
 
-## Known Issues
-
-1. **MRDS WFS API is down** -- manual labels from published literature
-2. **SRTM direct download 404** -- using Copernicus DEM 30m instead (better quality)
-3. **GDAL deflate + nodata=0 silently drops SWIR bands** -- write without nodata sentinel
-4. **Copernicus STAC assets are S3 internal paths** -- must use OData API for downloads
-5. **sentinelsat is deprecated** -- use cdsetool or OData API
-
----
-
 ## Lessons Learned
 
-- Always verify band values after writing rasters (GDAL nodata + compression traps)
-- Use `src.read(out_shape=...)` not `rasterio.warp.reproject` when CRS matches
-- Conda is essential for GDAL on macOS -- pip installs are fragile
-- Copernicus Open Hub is dead -- use Copernicus Data Space Ecosystem
-- Run baselines before fancy models -- if logistic regression gets 0.55, XGBoost may only add marginal lift
+### Technical
+- GDAL deflate + nodata=0 silently drops valid SWIR data
+- Sentinel-2 STAC assets are S3 internal paths, use OData for downloads
+- `src.read(out_shape=...)` for same-CRS resampling, not `rasterio.warp.reproject`
+- Conda is essential for GDAL on macOS
+
+### Scientific
+- **Single-feature models beat complex models at small N.** LR(ferric_iron) outperformed XGBoost, RF, and multi-feature LR. Occam's razor is not optional.
+- **Spatial leakage is the silent killer.** Random CV PR-AUC 0.841 collapsed to 0.228 under tile-based CV. Never trust random CV on geospatial data.
+- **Weak univariate signals (Z=0.7) do not survive cross-geography tests.** The signal was real but local.
+- **Bootstrap the coefficient.** A single point estimate (0.84) means nothing without CI ([0.29, 1.68]). The width matters.
+- **The failure mode IS the IP.** Solving cross-tile spectral normalization is the moat, not the ML model.
+
+### Process
+- Small frequent commits beat large batches
+- Run baselines before fancy models -- always
+- The visual QGIS check is more important than any metric
+- Build the pipeline end-to-end first, then validate science
+- Honest negative results are more valuable than inflated positive ones
