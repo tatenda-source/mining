@@ -1,0 +1,98 @@
+{
+  "summary": {
+    "clay_ratio": {
+      "deposit_mean": 1.300071120262146,
+      "deposit_std": 0.020561731753917695,
+      "background_mean": 1.2914022207260132,
+      "background_std": 0.0731329396367073,
+      "z_score": 0.1185361832738591,
+      "percentile": 46.54,
+      "n_valid": 4,
+      "signal": "NONE"
+    },
+    "iron_oxide": {
+      "deposit_mean": 1.2296992540359497,
+      "deposit_std": 0.11556883817312409,
+      "background_mean": 1.2699953317642212,
+      "background_std": 0.09062086790800095,
+      "z_score": -0.44466664972995396,
+      "percentile": 32.34,
+      "n_valid": 4,
+      "signal": "WEAK"
+    },
+    "ferric_iron": {
+      "deposit_mean": 0.23264112696051598,
+      "deposit_std": 0.05144796191173066,
+      "background_mean": 0.18076388537883759,
+      "background_std": 0.04494598135352135,
+      "z_score": 1.1542131247205265,
+      "percentile": 88.24,
+      "n_valid": 4,
+      "signal": "MODERATE"
+    },
+    "ndvi": {
+      "deposit_mean": 0.17639843747019768,
+      "deposit_std": 0.017515161723864216,
+      "background_mean": 0.15607580542564392,
+      "background_std": 0.04241351783275604,
+      "z_score": 0.47915459700111335,
+      "percentile": 75.38,
+      "n_valid": 4,
+      "signal": "WEAK"
+    },
+    "ferrous_iron": {
+      "deposit_mean": 1.1932817995548248,
+      "deposit_std": 0.1587338876142205,
+      "background_mean": 1.3535268306732178,
+      "background_std": 0.11081897467374802,
+      "z_score": -1.4460071624932072,
+      "percentile": 5.9799999999999995,
+      "n_valid": 4,
+      "signal": "MODERATE"
+    },
+    "clay_swir": {
+      "deposit_mean": 0.13039273768663406,
+      "deposit_std": 0.0077112266323083175,
+      "background_mean": 0.12553784251213074,
+      "background_std": 0.029967661947011948,
+      "z_score": 0.16200446945402774,
+      "percentile": 46.239999999999995,
+      "n_valid": 4,
+      "signal": "NONE"
+    }
+  },
+  "per_deposit": {
+    "Selous PGM": {
+      "clay_ratio": 1.2808576822280884,
+      "iron_oxide": 1.0493273735046387,
+      "ferric_iron": 0.3093949854373932,
+      "ndvi": 0.20588232576847076,
+      "ferrous_iron": 0.9199849367141724,
+      "clay_swir": 0.12313689291477203
+    },
+    "Darwendale Chrome": {
+      "clay_ratio": 1.2964024543762207,
+      "iron_oxide": 1.2110682725906372,
+      "ferric_iron": 0.24508626759052277,
+      "ndvi": 0.1731107085943222,
+      "ferrous_iron": 1.311855673789978,
+      "clay_swir": 0.12907251715660095
+    },
+    "Mutorashanga Chrome": {
+      "clay_ratio": 1.288635015487671,
+      "iron_oxide": 1.3484675884246826,
+      "ferric_iron": 0.17125913500785828,
+      "ndvi": 0.16190476715564728,
+      "ferrous_iron": 1.2763550281524658,
+      "clay_swir": 0.12611667811870575
+    },
+    "Trojan Nickel": {
+      "clay_ratio": 1.334389328956604,
+      "iron_oxide": 1.3099337816238403,
+      "ferric_iron": 0.20482411980628967,
+      "ndvi": 0.16469594836235046,
+      "ferrous_iron": 1.264931559562683,
+      "clay_swir": 0.14324486255645752
+    }
+  }
+}

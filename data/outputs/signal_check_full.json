@@ -1,0 +1,151 @@
+{
+  "summary": {
+    "clay_ratio": {
+      "deposit_mean": 1.272801140944163,
+      "background_mean": 1.2542051995918155,
+      "z_score": 0.20265953045448343,
+      "percentile": 49.8875,
+      "n_deposits": 12,
+      "signal": "NONE"
+    },
+    "iron_oxide": {
+      "deposit_mean": 1.3003361523151398,
+      "background_mean": 1.3127335074469446,
+      "z_score": -0.10517470606683925,
+      "percentile": 44.425,
+      "n_deposits": 12,
+      "signal": "NONE"
+    },
+    "ferric_iron": {
+      "deposit_mean": 0.21389122431476912,
+      "background_mean": 0.17658302602100592,
+      "z_score": 0.7077719871820882,
+      "percentile": 79.55,
+      "n_deposits": 12,
+      "signal": "WEAK"
+    },
+    "ndvi": {
+      "deposit_mean": 0.18292429049809775,
+      "background_mean": 0.15590305081705447,
+      "z_score": 0.5410336291823103,
+      "percentile": 78.475,
+      "n_deposits": 12,
+      "signal": "WEAK"
+    },
+    "ferrous_iron": {
+      "deposit_mean": 1.276770790417989,
+      "background_mean": 1.3647690943032502,
+      "z_score": -0.6584332733201477,
+      "percentile": 20.962500000000002,
+      "n_deposits": 12,
+      "signal": "WEAK"
+    },
+    "clay_swir": {
+      "deposit_mean": 0.11947267812987168,
+      "background_mean": 0.10989066519718108,
+      "z_score": 0.24955663093905275,
+      "percentile": 50.1375,
+      "n_deposits": 12,
+      "signal": "NONE"
+    }
+  },
+  "per_deposit": {
+    "Mimosa Mine": {
+      "clay_ratio": 1.157691240310669,
+      "iron_oxide": 1.3659731149673462,
+      "ferric_iron": 0.15229779481887817,
+      "ndvi": 0.13454829156398773,
+      "ferrous_iron": 1.480883240699768,
+      "clay_swir": 0.07308334857225418
+    },
+    "Mvurwi Chrome": {
+      "clay_ratio": 1.2660753726959229,
+      "iron_oxide": 1.3286889791488647,
+      "ferric_iron": 0.16828539967536926,
+      "ndvi": 0.13090305030345917,
+      "ferrous_iron": 1.3562945127487183,
+      "clay_swir": 0.11741682142019272
+    },
+    "Hartley Mine": {
+      "clay_ratio": 1.2626408338546753,
+      "iron_oxide": 1.399999976158142,
+      "ferric_iron": 0.16056647896766663,
+      "ndvi": 0.14499808847904205,
+      "ferrous_iron": 1.3851031064987183,
+      "clay_swir": 0.11607713252305984
+    },
+    "Unki Mine": {
+      "clay_ratio": 1.264931082725525,
+      "iron_oxide": 1.3049267530441284,
+      "ferric_iron": 0.20422251522541046,
+      "ndvi": 0.1917525976896286,
+      "ferrous_iron": 1.392447590827942,
+      "clay_swir": 0.11697091162204742
+    },
+    "Selous PGM": {
+      "clay_ratio": 1.2808576822280884,
+      "iron_oxide": 1.0493273735046387,
+      "ferric_iron": 0.3093949854373932,
+      "ndvi": 0.20588232576847076,
+      "ferrous_iron": 0.9199849367141724,
+      "clay_swir": 0.12313689291477203
+    },
+    "Shurugwi Chrome": {
+      "clay_ratio": 1.2023890018463135,
+      "iron_oxide": 1.3884297609329224,
+      "ferric_iron": 0.24818196892738342,
+      "ndvi": 0.22640058398246765,
+      "ferrous_iron": 1.0525844097137451,
+      "clay_swir": 0.0918952003121376
+    },
+    "Lalapanzi Chrome": {
+      "clay_ratio": 1.2520184516906738,
+      "iron_oxide": 1.3524057865142822,
+      "ferric_iron": 0.21642492711544037,
+      "ndvi": 0.19629055261611938,
+      "ferrous_iron": 1.3446887731552124,
+      "clay_swir": 0.11190779507160187
+    },
+    "Darwendale Chrome": {
+      "clay_ratio": 1.2964024543762207,
+      "iron_oxide": 1.2110682725906372,
+      "ferric_iron": 0.24508626759052277,
+      "ndvi": 0.1731107085943222,
+      "ferrous_iron": 1.311855673789978,
+      "clay_swir": 0.12907251715660095
+    },
+    "Mutorashanga Chrome": {
+      "clay_ratio": 1.288635015487671,
+      "iron_oxide": 1.3484675884246826,
+      "ferric_iron": 0.17125913500785828,
+      "ndvi": 0.16190476715564728,
+      "ferrous_iron": 1.2763550281524658,
+      "clay_swir": 0.12611667811870575
+    },
+    "Trojan Nickel": {
+      "clay_ratio": 1.334389328956604,
+      "iron_oxide": 1.3099337816238403,
+      "ferric_iron": 0.20482411980628967,
+      "ndvi": 0.16469594836235046,
+      "ferrous_iron": 1.264931559562683,
+      "clay_swir": 0.14324486255645752
+    },
+    "Epoch Nickel": {
+      "clay_ratio": 1.2695187330245972,
+      "iron_oxide": 1.2464985847473145,
+      "ferric_iron": 0.2419079840183258,
+      "ndvi": 0.2284351885318756,
+      "ferrous_iron": 1.2211934328079224,
+      "clay_swir": 0.11875588446855545
+    },
+    "Shurugwi Gold": {
+      "clay_ratio": 1.3980644941329956,
+      "iron_oxide": 1.298313856124878,
+      "ferric_iron": 0.24424311518669128,
+      "ndvi": 0.23616938292980194,
+      "ferrous_iron": 1.3149272203445435,
+      "clay_swir": 0.1659940928220749
+    }
+  },
+  "verdict": "WEAK/NO signal. Investigate before proceeding to ML."
+}
