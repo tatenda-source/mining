@@ -26,8 +26,12 @@ data:
     bands: ["B02", "B03", "B04", "B08", "B8A", "B11", "B12"]
 
   aster:
-    # Download from NASA EarthData
+    # Download from NASA EarthData (LP DAAC)
     product: "AST_L1T"
+    version: "004"  # V004 = Cloud Optimized GeoTIFF (Jan 2025 reprocessing)
+    # CRITICAL: SWIR detector failed 2008-04-23. Only pre-2008 data has usable SWIR.
+    date_start: "2000-03-01"
+    date_end: "2008-04-01"
     bands_vnir: ["B01", "B02", "B3N"]
     bands_swir: ["B04", "B05", "B06", "B07", "B08", "B09"]
     bands_tir: ["B10", "B11", "B12", "B13", "B14"]

@@ -1,0 +1,471 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngezi Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Zimplats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.97,
+          -20.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hartley Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Zimplats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.02,
+          -19.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unki Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Anglo American"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.04,
+          -19.63
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mimosa Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Sibanye-Stillwater"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.2,
+          -20.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Selous PGM",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.55,
+          -19.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngezi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.95,
+          -20.08
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shurugwi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.0,
+          -19.68
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lalapanzi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.07,
+          -19.47
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Darwendale Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.45,
+          -19.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mutorashanga Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.55,
+          -19.08
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mvurwi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.85,
+          -18.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trojan Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.42,
+          -19.22
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shangani Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.93,
+          -20.18
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Epoch Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.1,
+          -19.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kwekwe Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.82,
+          -18.92
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kadoma Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.92,
+          -18.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shurugwi Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.05,
+          -19.78
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.159146806460615,
+          -20.1428478079471
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_001",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.909,
+        "spectral_similarity": 0.995,
+        "structural_proximity": 0.706,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.191,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.163028440833436,
+          -20.144678966530442
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_002",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.865,
+        "spectral_similarity": 0.762,
+        "structural_proximity": 0.946,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.714,
+        "dist_to_structure_m": 9.3,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.16290818832297,
+          -20.144824175865367
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_039",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.803,
+        "spectral_similarity": 0.606,
+        "structural_proximity": 1.0,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 2.067,
+        "dist_to_structure_m": 9.0,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.174301330376053,
+          -20.1662867266852
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_046",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.76,
+        "spectral_similarity": 0.7,
+        "structural_proximity": 0.698,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.854,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 3,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.152726266306775,
+          -20.15115595011544
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_016",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.755,
+        "spectral_similarity": 0.888,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.43,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 8,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.166501337371724,
+          -20.14651913707243
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_040",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.736,
+        "spectral_similarity": 0.848,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.522,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 12,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.169887277825293,
+          -20.14811625032154
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_041",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.696,
+        "spectral_similarity": 0.768,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.701,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 12,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1793226401758,
+          -20.152566319777623
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_042",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.675,
+        "spectral_similarity": 0.926,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 1.347,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 7,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17429999457027,
+          -20.166159165122306
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_047",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.667,
+        "spectral_similarity": 0.517,
+        "structural_proximity": 0.697,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 2.268,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 3,
+        "source": "algorithmic_classification"
+      }
+    }
+  ]
+}

@@ -17,6 +17,7 @@ data/raw/*
 data/processed/*
 data/training/*.tif
 data/outputs/*.tif
+data/outputs/*.png
 
 # Keep directory structure
 !data/**/.gitkeep
@@ -44,3 +45,7 @@ credentials.json
 *.pkl
 *.h5
 *.pt
+
+# Training data zips
+prithvi_training_data.zip
+*.zip

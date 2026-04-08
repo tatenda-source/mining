@@ -1,0 +1,1 @@
+{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"catalog_id": "EAF_644", "catalog_name": "Macgregor_AfricaFaults", "slip_type": "Normal"}, "geometry": {"type": "LineString", "coordinates": [[30.1674800320001, -21.3992205509999], [28.3576336080001, -22.0397990669999]]}}]}

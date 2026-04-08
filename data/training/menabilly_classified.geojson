@@ -1,0 +1,511 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.159146806460615,
+          -20.1428478079471
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_001",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.909,
+        "spectral_similarity": 0.995,
+        "structural_proximity": 0.706,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.191,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.163028440833436,
+          -20.144678966530442
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_002",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.865,
+        "spectral_similarity": 0.762,
+        "structural_proximity": 0.946,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.714,
+        "dist_to_structure_m": 9.3,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.16290818832297,
+          -20.144824175865367
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_039",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.803,
+        "spectral_similarity": 0.606,
+        "structural_proximity": 1.0,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 2.067,
+        "dist_to_structure_m": 9.0,
+        "cluster_id": 9,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.174301330376053,
+          -20.1662867266852
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_046",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.76,
+        "spectral_similarity": 0.7,
+        "structural_proximity": 0.698,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 1.854,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 3,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.152726266306775,
+          -20.15115595011544
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_016",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.755,
+        "spectral_similarity": 0.888,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.43,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 8,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.166501337371724,
+          -20.14651913707243
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_040",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.736,
+        "spectral_similarity": 0.848,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.522,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 12,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.169887277825293,
+          -20.14811625032154
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_041",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.696,
+        "spectral_similarity": 0.768,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.701,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 12,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1793226401758,
+          -20.152566319777623
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_042",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.675,
+        "spectral_similarity": 0.926,
+        "structural_proximity": 0.706,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 1.347,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 7,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17429999457027,
+          -20.166159165122306
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_047",
+        "commodity": "PGM",
+        "classification": "ore_bearing",
+        "composite_score": 0.667,
+        "spectral_similarity": 0.517,
+        "structural_proximity": 0.697,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 2.268,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 3,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.169167619337745,
+          -20.15438488688373
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_017",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.63,
+        "spectral_similarity": 0.84,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 1.54,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 13,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.159056054889913,
+          -20.155446644684886
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_014",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.611,
+        "spectral_similarity": 0.801,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 1.627,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 11,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17486196882618,
+          -20.158254055253373
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_019",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.555,
+        "spectral_similarity": 0.49,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.328,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 5,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17476464521679,
+          -20.158354479932022
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_018",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.551,
+        "spectral_similarity": 0.521,
+        "structural_proximity": 0.636,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.257,
+        "dist_to_structure_m": 11.5,
+        "cluster_id": 5,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.162071686071226,
+          -20.157490656732353
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_013",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.543,
+        "spectral_similarity": 0.465,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.384,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 10,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.155889756274895,
+          -20.153300400952517
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_015",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.521,
+        "spectral_similarity": 0.421,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.484,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 8,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.171203696328497,
+          -20.163680341517196
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_054",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.518,
+        "spectral_similarity": 0.836,
+        "structural_proximity": 0.0,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 1.548,
+        "dist_to_structure_m": 15.8,
+        "cluster_id": 4,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.164952957116643,
+          -20.15944350457355
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_012",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.503,
+        "spectral_similarity": 0.385,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.565,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 10,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.136394507685115,
+          -20.140083866591862
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_048",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.501,
+        "spectral_similarity": 1.0,
+        "structural_proximity": 0.003,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 1.179,
+        "dist_to_structure_m": 15.8,
+        "cluster_id": 1,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.173962007082157,
+          -20.166226120163834
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_010",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.446,
+        "spectral_similarity": 0.074,
+        "structural_proximity": 0.698,
+        "cluster_density": 1.0,
+        "mahalanobis_distance": 3.265,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 3,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.170237771481574,
+          -20.163025170132364
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_011",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.439,
+        "spectral_similarity": 0.257,
+        "structural_proximity": 0.702,
+        "cluster_density": 0.5,
+        "mahalanobis_distance": 2.852,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 4,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.179118728035302,
+          -20.161272835038982
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_020",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.438,
+        "spectral_similarity": 0.458,
+        "structural_proximity": 0.697,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 2.399,
+        "dist_to_structure_m": 11.0,
+        "cluster_id": 6,
+        "source": "algorithmic_classification"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.14179387628086,
+          -20.134660452924084
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_049",
+        "commodity": "PGM",
+        "classification": "barren",
+        "composite_score": 0.002,
+        "spectral_similarity": 0.0,
+        "structural_proximity": 0.006,
+        "cluster_density": 0.0,
+        "mahalanobis_distance": 3.431,
+        "dist_to_structure_m": 15.7,
+        "cluster_id": 2,
+        "source": "algorithmic_classification"
+      }
+    }
+  ]
+}

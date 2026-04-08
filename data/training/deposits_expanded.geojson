@@ -1,0 +1,1182 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngezi Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Zimplats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.97,
+          -20.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hartley Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Zimplats"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.02,
+          -19.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Unki Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Anglo American"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.04,
+          -19.63
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mimosa Mine",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ",
+        "operator": "Sibanye-Stillwater"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.2,
+          -20.42
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Selous PGM",
+        "commodity": "PGM",
+        "deposit_type": "Layered intrusion MSZ"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.55,
+          -19.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngezi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.95,
+          -20.08
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shurugwi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.0,
+          -19.68
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lalapanzi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.07,
+          -19.47
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Darwendale Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.45,
+          -19.15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mutorashanga Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.55,
+          -19.08
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mvurwi Chrome",
+        "commodity": "Chromium",
+        "deposit_type": "Chromitite seam"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.85,
+          -18.95
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Trojan Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.42,
+          -19.22
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shangani Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.93,
+          -20.18
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Epoch Nickel",
+        "commodity": "Nickel",
+        "deposit_type": "Komatiite-hosted"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.1,
+          -19.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kwekwe Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.82,
+          -18.92
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kadoma Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.92,
+          -18.35
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Shurugwi Gold",
+        "commodity": "Gold",
+        "deposit_type": "Orogenic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.05,
+          -19.78
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.159146806460615,
+          -20.1428478079471
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_003",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.163028440833436,
+          -20.144678966530442
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_004",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.184994221584592,
+          -20.15588629919612
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_005",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.18716312758403,
+          -20.15814186372355
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_006",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.197078354182043,
+          -20.168452146440803
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_007",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.197244862804233,
+          -20.168625274755804
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_008",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19321218861741,
+          -20.182085119511868
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_009",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19310337936564,
+          -20.182279909216433
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_010",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.18451741851446,
+          -20.175970101117734
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_011",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.173962007082157,
+          -20.166226120163834
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_012",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.170237771481574,
+          -20.163025170132364
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_013",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.164952957116643,
+          -20.15944350457355
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_014",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.162071686071226,
+          -20.157490656732353
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_015",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.159056054889913,
+          -20.155446644684886
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_016",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.155889756274895,
+          -20.153300400952517
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_017",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.152726266306775,
+          -20.15115595011544
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_018",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.169167619337745,
+          -20.15438488688373
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_019",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17476464521679,
+          -20.158354479932022
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_020",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17486196882618,
+          -20.158254055253373
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_021",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.179118728035302,
+          -20.161272835038982
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_022",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.18344300935859,
+          -20.157376493726282
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_023",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.186134665399827,
+          -20.159862832057854
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_024",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.182624479068114,
+          -20.165736558114325
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_025",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.189911144016033,
+          -20.17179297827894
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_026",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.18988463503743,
+          -20.172040988980243
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_027",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19005423091718,
+          -20.172002463316755
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_028",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1962880514769,
+          -20.173269201444437
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_029",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.192165359111893,
+          -20.180171487637818
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_030",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.192128793174586,
+          -20.17991640830614
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_031",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19218814814657,
+          -20.179592177833907
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_032",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19216413690488,
+          -20.179307736844603
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_033",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.191997285862694,
+          -20.178676483213792
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_034",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19201816729149,
+          -20.177871694015362
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_035",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19231671352784,
+          -20.17716153384394
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_036",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19289712811148,
+          -20.17636987124673
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_037",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19420218205016,
+          -20.175450650558222
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_038",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.196516743406836,
+          -20.173310600831826
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_039",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.19628534120592,
+          -20.17293358293761
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_040",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.16290818832297,
+          -20.144824175865367
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_041",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.166501337371724,
+          -20.14651913707243
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_042",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.169887277825293,
+          -20.14811625032154
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_043",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.1793226401758,
+          -20.152566319777623
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_044",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.184666766686515,
+          -20.155814496126812
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_045",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.184607561596057,
+          -20.17567552777651
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_046",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.184463545784393,
+          -20.17566772746733
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_047",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.174301330376053,
+          -20.1662867266852
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_048",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17429999457027,
+          -20.166159165122306
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_049",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.136394507685115,
+          -20.140083866591862
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_051",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.14179387628086,
+          -20.134660452924084
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_053",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.18350270938002,
+          -20.15433602393989
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_055",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.202363455934563,
+          -20.17394796304562
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_057",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.196243015518245,
+          -20.17665756778603
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_059",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.192507326055335,
+          -20.183345409670103
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_061",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.171203696328497,
+          -20.163680341517196
+        ]
+      },
+      "properties": {
+        "name": "Menabilly_DH_063",
+        "commodity": "PGM",
+        "source": "Menabilly_UTM2_KML",
+        "tile": "T36KTC",
+        "type": "drill_hole"
+      }
+    }
+  ]
+}

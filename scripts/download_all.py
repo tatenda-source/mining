@@ -34,6 +34,7 @@ logger = logging.getLogger("geomine.download_all")
 @click.command()
 @click.argument("config_path", type=click.Path(exists=True))
 @click.option("--skip-sentinel", is_flag=True, help="Skip Sentinel-2 download")
+@click.option("--skip-aster", is_flag=True, help="Skip ASTER L1T download")
 @click.option("--skip-srtm", is_flag=True, help="Skip SRTM DEM download")
 @click.option("--skip-mrds", is_flag=True, help="Skip MRDS label download")
 @click.option(
@@ -51,6 +52,7 @@ logger = logging.getLogger("geomine.download_all")
 def main(
     config_path: str,
     skip_sentinel: bool,
+    skip_aster: bool,
     skip_srtm: bool,
     skip_mrds: bool,
     earthdata_token: str | None,
@@ -69,6 +71,8 @@ def main(
     steps = []
     if not skip_sentinel:
         steps.append("Sentinel-2")
+    if not skip_aster:
+        steps.append("ASTER")
     if not skip_srtm:
         steps.append("SRTM")
     if not skip_mrds:
@@ -90,6 +94,13 @@ def main(
             except Exception as exc:
                 logger.error("Sentinel-2 download failed: %s", exc, exc_info=True)
                 errors.append(f"Sentinel-2: {exc}")
+
+        elif step == "ASTER":
+            try:
+                _download_aster(config, earthdata_token)
+            except Exception as exc:
+                logger.error("ASTER download failed: %s", exc, exc_info=True)
+                errors.append(f"ASTER: {exc}")
 
         elif step == "SRTM":
             try:
@@ -145,6 +156,33 @@ def _download_sentinel2(
     logger.info("Preprocessing Sentinel-2 scenes")
     stacked = preprocess_sentinel2(raw_dir, processed_dir, config)
     logger.info("Produced %d stacked multi-band GeoTIFFs", len(stacked))
+
+
+def _download_aster(
+    config: dict,
+    earthdata_token: str | None,
+) -> None:
+    """Download ASTER L1T scenes (pre-2008 for SWIR bands)."""
+    from geomine.ingest.aster import download_aster
+
+    logger.info("--- ASTER L1T Download ---")
+    logger.info(
+        "NOTE: SWIR bands only available in pre-April-2008 data "
+        "(detector failure 2008-04-23)"
+    )
+
+    files = download_aster(
+        config,
+        earthdata_token=earthdata_token,
+        method="earthaccess",  # try earthaccess first
+        max_granules=50,
+    )
+
+    if not files:
+        logger.warning("No ASTER L1T files downloaded")
+        return
+
+    logger.info("Downloaded %d ASTER L1T files", len(files))
 
 
 def _download_srtm(
