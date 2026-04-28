@@ -473,6 +473,64 @@ def layers(config_path: str, preset: str | None, all_presets: bool, bands: str |
 
 
 @main.command()
+@click.argument("dataset_path", type=click.Path(exists=True))
+@click.argument("model_path", type=click.Path(exists=True))
+@click.option("--output", "-o", type=click.Path(), default="audit_report.md",
+              help="Markdown report destination.")
+@click.option("--json-output", type=click.Path(), default=None,
+              help="Optional JSON report destination.")
+@click.option("--block-size-km", type=float, default=25.0,
+              help="Spatial block edge length for spatial CV.")
+def audit(
+    dataset_path: str,
+    model_path: str,
+    output: str,
+    json_output: str | None,
+    block_size_km: float,
+) -> None:
+    """Audit a binary classifier for spatial leakage, calibration, and stability.
+
+    DATASET_PATH: Parquet/CSV file with feature columns + ``label`` (0/1) +
+    ``x``, ``y`` (projected metres).
+    MODEL_PATH:   Joblib-pickled sklearn-compatible classifier.
+    """
+    import joblib
+    import pandas as pd
+
+    from geomine.audit import audit as run_audit, AuditConfig
+    from geomine.audit.report import to_markdown, to_json
+
+    logger.info("Loading dataset: %s", dataset_path)
+    if dataset_path.endswith(".parquet"):
+        df = pd.read_parquet(dataset_path)
+    else:
+        df = pd.read_csv(dataset_path)
+
+    if "label" not in df.columns or "x" not in df.columns or "y" not in df.columns:
+        raise click.UsageError("Dataset must have 'label', 'x', 'y' columns.")
+    feature_cols = [c for c in df.columns if c not in ("label", "x", "y")]
+
+    X = df[feature_cols].to_numpy()
+    y = df["label"].to_numpy().astype(int)
+    coords = df[["x", "y"]].to_numpy()
+
+    logger.info("Loading model: %s", model_path)
+    model = joblib.load(model_path)
+
+    cfg = AuditConfig(block_size_km=block_size_km)
+    result = run_audit(model, X, y, coords, feature_names=feature_cols, config=cfg)
+
+    Path(output).write_text(to_markdown(result, model_name=Path(model_path).stem))
+    logger.info("Markdown report: %s", output)
+
+    if json_output:
+        Path(json_output).write_text(to_json(result))
+        logger.info("JSON report: %s", json_output)
+
+    logger.info("Grade: %s | Certificate: %s", result.grade, result.certificate)
+
+
+@main.command()
 @click.argument("config_path", type=click.Path(exists=True))
 def run_all(config_path: str) -> None:
     """Run the full Phase 1 pipeline: download -> features -> train -> predict."""
